@@ -34,14 +34,14 @@ const Statistics = ({ good, neutral, bad }) => {
   }
 
   return (
-    <>
+    <div>
       <StatisticsLine text="good" value={good} />
       <StatisticsLine text="neutral" value={neutral} />
       <StatisticsLine text="bad" value={bad} />
       <StatisticsLine text="all" value={count} />
       <StatisticsLine text="average" value={average} />
       <StatisticsLine text="positive" value={positive} />
-    </>
+    </div>
   );
 };
 
