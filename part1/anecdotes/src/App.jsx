@@ -1,5 +1,38 @@
 import { useState } from "react";
 
+const Heading = ({ text }) => {
+  return <h1>{text}</h1>;
+};
+
+const AnecdoteInfo = ({ anecdote, votes }) => {
+  return (
+    <div>
+      <p>{anecdote}</p>
+      <p>has {votes} votes</p>
+    </div>
+  );
+};
+
+const Button = ({ onClick, text }) => {
+  return <button onClick={onClick}>{text}</button>;
+};
+
+const MostVotedAnecdote = ({ anecdotes, votes }) => {
+  const maxVotes = Math.max(...votes);
+  const indexOfMaxVoted = votes.indexOf(maxVotes);
+
+  if (maxVotes == 0) {
+    return <p>No votes yet</p>;
+  }
+
+  return (
+    <AnecdoteInfo
+      anecdote={anecdotes[indexOfMaxVoted]}
+      votes={votes[indexOfMaxVoted]}
+    />
+  );
+};
+
 const App = () => {
   const anecdotes = [
     "If it hurts, do it more often.",
@@ -28,10 +61,12 @@ const App = () => {
 
   return (
     <>
-      <div>{anecdotes[selected]}</div>
-      <div>{votes[selected]}</div>
-      <button onClick={setToVotes}>vote</button>
-      <button onClick={setToSelected}>next anecdote</button>
+      <Heading text="Anecdote of the day" />
+      <AnecdoteInfo anecdote={anecdotes[selected]} votes={votes[selected]} />
+      <Button onClick={setToVotes} text="vote" />
+      <Button onClick={setToSelected} text="next anecdote" />
+      <Heading text="Anecdote with most votes" />
+      <MostVotedAnecdote anecdotes={anecdotes} votes={votes} />
     </>
   );
 };
