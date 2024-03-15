@@ -29,6 +29,10 @@ const Statistics = ({ good, neutral, bad }) => {
   let average = (good - bad) / count;
   let positive = (good / count) * 100;
 
+  if (count == 0) {
+    return <p>No feedback given</p>;
+  }
+
   return (
     <>
       <StatisticsLine text="good" value={good} />
